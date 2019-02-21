@@ -489,7 +489,7 @@ export default class GooglePlacesAutocomplete extends Component {
           // console.warn("google places autocomplete: request could not be completed or has been aborted");
         }
       };
-      request.open('GET', 'https://maps.googleapis.com/maps/api/place/autocomplete/json?&input=' + encodeURIComponent(text) + '&' + Qs.stringify(this.props.query));
+      request.open('GET', this.props.proxy + '/maps/api/place/autocomplete/json?&input=' + encodeURIComponent(text) + '&' + Qs.stringify(this.props.query));
       if (this.props.query.origin !== null) {
          request.setRequestHeader('Referer', this.props.query.origin)
       }
@@ -766,7 +766,8 @@ GooglePlacesAutocomplete.propTypes = {
   suppressDefaultStyles: PropTypes.bool,
   numberOfLines: PropTypes.number,
   onSubmitEditing: PropTypes.func,
-  editable: PropTypes.bool
+  editable: PropTypes.bool,
+  proxy: PropTypes.string
 }
 GooglePlacesAutocomplete.defaultProps = {
   placeholder: 'Search',
